@@ -92,6 +92,30 @@ public class Main {
         });
         backgroundTitleLabel.add(settingsButton);
 
+        newGameLabel.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                newGameLabel.setLocation(
+                    newGameLabel.getX(),
+                    newGameLabel.getY() - 10
+                );
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                newGameLabel.setLocation(
+                    newGameLabel.getX(),
+                    newGameLabel.getY() + 10
+                );
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                new NewCampaign();
+            }
+        });
+
         // quit button
         ImageIcon quitImage = new ImageIcon("src/images/Quit.png");
         Image resizedQuitImage = quitImage.getImage().getScaledInstance(210, 140, Image.SCALE_SMOOTH);
