@@ -5,7 +5,7 @@ import java.awt.event.MouseEvent;
 
 public class Main {
     public static void main(String[] args) {
-            // akoy isang nigga
+        
         JFrame mainFrame = new JFrame();
         mainFrame.setResizable(false);
         mainFrame.setSize(1100, 700);
@@ -45,25 +45,52 @@ public class Main {
         newGameLabel.setBounds(60,50, 250, 180);
         backgroundTitleLabel.add(newGameLabel);
 
-        // load game button (DISREGARD)
-        //ImageIcon loadGameImage = new ImageIcon("src/images/LoadGame.png");
-        //Image resizedLoadGameImage = loadGameImage.getImage().getScaledInstance(210, 140, Image.SCALE_SMOOTH);
-        //ImageIcon resizedLoadGame = new ImageIcon(resizedLoadGameImage);
-        //JLabel loadGameLabel = new JLabel(resizedLoadGame);
-        //loadGameLabel.setBounds(80, 150, 210, 140);
-        //backgroundTitleLabel.add(loadGameLabel);
+        // load game button
+        ImageIcon loadGameImage = new ImageIcon("src/images/LoadGame.png");
+        Image resizedLoadGameImage = loadGameImage.getImage().getScaledInstance(210, 140, Image.SCALE_SMOOTH);
+        ImageIcon resizedLoadGame = new ImageIcon(resizedLoadGameImage);
+        JLabel loadGameLabel = new JLabel(resizedLoadGame);
+        loadGameLabel.setBounds(80, 150, 210, 140);
+        backgroundTitleLabel.add(loadGameLabel);
 
         // settings button
-        ImageIcon settingsImage = new ImageIcon("src/images/Settings.png");
-        Image resizedSettingsImage = settingsImage.getImage().getScaledInstance(210, 140, Image.SCALE_SMOOTH);
-        ImageIcon resizedSettings = new ImageIcon(resizedSettingsImage);
-        JLabel settingsLabel = new JLabel();
-        settingsLabel.setBounds(80, 230, 210, 140);
-        backgroundTitleLabel.add(settingsLabel);
+        ImageIcon SettingsIcon = new ImageIcon("src/images/Settings.png");
+        Image settingsScaled = SettingsIcon.getImage().getScaledInstance(210, 140, Image.SCALE_SMOOTH);
+        ImageIcon settingsIcon = new ImageIcon(settingsScaled);
+        JLabel settingsButton = new JLabel(settingsIcon);
+        settingsButton.setBounds(80, 230, 210, 140);
 
-        //kopyahin ko lang dati kong code
+        // hitbox kuno
+        settingsButton.setCursor(
+            new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)
+        );
 
+        // yung animation na aangat - may bug pa to with the hitbox kasi 
+        // yung hitbox ng cursor ay hindi umaangat kasama ng button
+        settingsButton.addMouseListener(new MouseAdapter() {
 
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                settingsButton.setLocation(
+                    settingsButton.getX(),
+                    settingsButton.getY() - 10
+                );
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                settingsButton.setLocation(
+                    settingsButton.getX(),
+                    settingsButton.getY() + 10
+                );
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                new Settings(mainFrame);
+            }
+        });
+        backgroundTitleLabel.add(settingsButton);
 
         // quit button
         ImageIcon quitImage = new ImageIcon("src/images/Quit.png");
@@ -72,7 +99,6 @@ public class Main {
         JLabel quitLabel = new JLabel(resizedQuit);
         quitLabel.setBounds(80, 310, 210, 140);
         backgroundTitleLabel.add(quitLabel);
-
 
 
         mainFrame.setVisible(true);
