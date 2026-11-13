@@ -28,14 +28,14 @@ static class Character {
          }
         }
          
-        private static void CharacterSelection(){
+        public static void CharacterSelection(){
                 JFrame CharSelect = new JFrame();
                 CharSelect.setResizable(false);
                 CharSelect.setSize(1100, 700);
                 CharSelect.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 CharSelect.setLayout(null);
 
-                ImageIcon backgroundImage = new ImageIcon("src/images/Mainbackroung.jpg");
+                ImageIcon backgroundImage = new ImageIcon("src/images/Mainpage_bg.jpeg");
                 Image resizedImage = backgroundImage.getImage().getScaledInstance(1100, 700, Image.SCALE_SMOOTH);
                 ImageIcon resizedBackground = new ImageIcon(resizedImage);
                 JLabel backgroundLabel = new JLabel(resizedBackground);

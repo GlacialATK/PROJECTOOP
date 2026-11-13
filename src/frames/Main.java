@@ -112,7 +112,7 @@ public class Main {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                new NewCampaign();
+                NewCampaign.CharacterSelection();
             }
         });
 
