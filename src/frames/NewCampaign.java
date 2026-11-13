@@ -52,7 +52,7 @@ static class Character {
                 Character[] characters={
                         new Character("heavy","brute" ,100, 20, 10, "src/images/Heavy.png"),
                         new Character("doctor","healer", 80, 30, 5, "src/images/doctor.png"),
-                        new Character("soldier","tactical", 90, 25, 8, "src/images/soldier.png"),
+                        new Character("soldier","tactical", 90, 25, 8, "src/images/soldier.jpg"),
                 };
                   //starting place nila and then calculation for spacing nila
                 int startX = 175;
