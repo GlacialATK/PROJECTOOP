@@ -5,7 +5,7 @@ import java.awt.event.MouseEvent;
 
 public class Main {
     public static void main(String[] args) {
-
+            // akoy isang nigga
         JFrame mainFrame = new JFrame();
         mainFrame.setResizable(false);
         mainFrame.setSize(1100, 700);
