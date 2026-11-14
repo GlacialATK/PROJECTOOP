@@ -38,7 +38,7 @@ public class Main {
 
         HoverButton loadGameButton = new HoverButton(
                 "src/images/LoadGame.png", 80, 150, 210, 140,
-                () -> System.out.println("Load game clicked"));
+                () -> new LoadGame());
 
         HoverButton settingsButton = new HoverButton(
                 "src/images/Settings.png", 80, 230, 210, 140,
