@@ -53,6 +53,14 @@ public class Main {
         backgroundTitleLabel.add(settingsButton);
         backgroundTitleLabel.add(quitButton);
 
+        BGM.play();
+
+        HoverButton creditsButton = new HoverButton(
+                        "src/images/Credits.png", 850, 540, 210, 160,
+                        () -> new Credits(mainFrame));
+
+        backgroundLabel.add(creditsButton);
+
         mainFrame.setVisible(true);
     }
 }
