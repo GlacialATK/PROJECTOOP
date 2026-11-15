@@ -1,8 +1,8 @@
-import javax.swing.*;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.Color;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 
@@ -17,14 +17,16 @@ static class Character {
          int attack;
          int defense;
          String imagePath;
+         String ButtonimagePath;
 //method para sa character
-         public Character(String name, String role, int health, int attack, int defense, String imagePath) {
+         public Character(String name, String role, int health, int attack, int defense, String imagePath, String ButtonimagePath) {
          this.name = name;
          this.role = role;
          this.health = health;
          this.attack = attack;
          this.defense = defense;
          this.imagePath = imagePath;
+         this.ButtonimagePath = ButtonimagePath;
          }
         }
          
@@ -42,7 +44,7 @@ static class Character {
                 backgroundLabel.setBounds(0, 0, 1100, 700);
                 CharSelect.add(backgroundLabel);
 
-                ImageIcon Charbutton = new ImageIcon("src/images/Create_new_char.png");
+                ImageIcon Charbutton = new ImageIcon("src/images/Choose_your_role.png");
                 Image resizeNewCharImage = Charbutton.getImage().getScaledInstance(250, 100, Image.SCALE_SMOOTH);
                 ImageIcon ResizedChar = new ImageIcon(resizeNewCharImage);
                 JLabel NewChar = new JLabel(ResizedChar);
@@ -50,9 +52,9 @@ static class Character {
                 backgroundLabel.add(NewChar);
                     //array para sa char and their images
                 Character[] characters={
-                        new Character("heavy","brute" ,100, 20, 10, "src/images/Heavy.png"),
-                        new Character("doctor","healer", 80, 30, 5, "src/images/doctor.png"),
-                        new Character("soldier","tactical", 90, 25, 8, "src/images/soldier.jpg"),
+                        new Character("heavy","brute" ,100, 20, 10, "src/images/Heavy.png", "src/images/Heavy_role.png"),
+                        new Character("doctor","healer", 80, 30, 5, "src/images/doctor.png", "src/images/doctor_role.png"),
+                        new Character("soldier","tactical", 90, 25, 8, "src/images/soldier.jpg", "src/images/soldier_role.png"),
                 };
                   //starting place nila and then calculation for spacing nila
                 int startX = 175;
@@ -71,6 +73,15 @@ static class Character {
                  charLabel.setBounds(xPos, startY, 200, 200);
                  backgroundLabel.add(charLabel);
 
+                 //button icon role nila
+                 ImageIcon charButtonIcon = new ImageIcon(c.ButtonimagePath);
+                 Image resizedCharButtonImage = charButtonIcon.getImage().getScaledInstance(200, 100, Image.SCALE_SMOOTH);
+                 ImageIcon resizedCharButtonIcon = new ImageIcon(resizedCharButtonImage);
+                 JLabel charButtonLabel = new JLabel(resizedCharButtonIcon);
+                 charButtonLabel.setBounds(xPos, startY + 210, 200, 100);
+                 backgroundLabel.add(charButtonLabel);
+
+
                  // para sa mouse effects
                  charLabel.addMouseListener( new MouseAdapter() {
                 @Override 
@@ -80,8 +91,58 @@ static class Character {
                 public void mouseExited(MouseEvent e) {
                         charLabel.setBorder(new LineBorder(new Color(60, 60, 60), 1));              
                 }
+                //for username and double click to confirm
                 public void mouseClicked(MouseEvent e) {
-                        System.out.println("Character " + c.name + " is selected");                       
+                        if (e.getClickCount() == 2) {
+                        //for username input ng mga users
+                String playerName = null;
+                while (true) {
+                playerName = JOptionPane.showInputDialog(
+                CharSelect,
+                "You selected " + c.name.toUpperCase() + "(" + c.role.toUpperCase() + "). \nEnter your username:", 
+                "Character Confirmation",
+                JOptionPane.QUESTION_MESSAGE); 
+                // if wala silang nilagay
+                if(playerName == null){
+                return;
+                }
+                playerName = playerName.trim();
+                //pag walang laman
+                if(playerName.isEmpty()){
+                JOptionPane.showMessageDialog(
+                CharSelect, 
+                "Username cannot be empty. Please enter a valid username.", 
+                "Invalid Username", 
+                JOptionPane.ERROR_MESSAGE
+                );
+                continue;
+                }
+                //if sobrasobra na sila jan sa trip nila
+                if(playerName.length() > 20){
+                JOptionPane.showMessageDialog(
+                CharSelect, 
+                "Username cannot exceed 20 characters.", 
+                "Invalid Username", 
+                JOptionPane.ERROR_MESSAGE
+                );
+                continue;
+                }
+                break;
+                } 
+                //if accepted na ang username nila
+                if (playerName != null && !playerName.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(
+                CharSelect, 
+                playerName.trim() + "!\nStarting campaign as " + c.name.toUpperCase() + ".", 
+                "Campaign Started", 
+                JOptionPane.INFORMATION_MESSAGE
+
+                            );   
+                            CharSelect.dispose();
+                        }
+
+                        }
+                                            
                 }
 
         });
@@ -91,20 +152,3 @@ static class Character {
         }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
